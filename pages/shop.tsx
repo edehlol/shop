@@ -1,56 +1,37 @@
+import Layout from '../components/Layout';
 import ProductCard from '../components/ProductCard';
-import chair from '../public/images/chair.jpg';
+import { Product } from '../interfaces/Product';
+import { getProductsList } from '../lib/products';
 
-console.log(chair);
-
-const Shop = () => {
+const Shop = ({ productsData }: { productsData: Product[] }) => {
+  const renderList = () => {
+    return productsData.map((product: Product) => (
+      <ProductCard
+        key={product.id}
+        id={product.id}
+        name={product.name}
+        thumbnail={product.thumbnail}
+        description={product.description}
+        price={product.price}
+      />
+    ));
+  };
   return (
-    <div className="flex justify-center p-4">
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-screen-lg justify-center justify-items-center">
-        <ProductCard
-          productId={'123'}
-          title="Boko Chair"
-          thumbnail={chair}
-          description="Cozy high-end chair ecologically sourced from Ethiopian Tree Bark"
-          price={200}
-        />
-        <ProductCard
-          productId={'123'}
-          title="Boko Chair"
-          thumbnail={chair}
-          description="Cozy high-end chair ecologically sourced from Ethiopian Tree Bark"
-          price={200}
-        />
-        <ProductCard
-          productId={'123'}
-          title="Boko Chair"
-          thumbnail={chair}
-          description="Cozy high-end chair ecologically sourced from Ethiopian Tree Bark"
-          price={200}
-        />
-        <ProductCard
-          productId={'123'}
-          title="Boko Chair"
-          thumbnail={chair}
-          description="Cozy high-end chair ecologically sourced from Ethiopian Tree Bark"
-          price={200}
-        />
-        <ProductCard
-          productId={'123'}
-          title="Boko Chair"
-          thumbnail={chair}
-          description="Cozy high-end chair ecologically sourced from Ethiopian Tree Bark"
-          price={200}
-        />
-        <ProductCard
-          productId={'123'}
-          title="Boko Chair"
-          thumbnail={chair}
-          description="Cozy high-end chair ecologically sourced from Ethiopian Tree Bark"
-          price={200}
-        />
+    <Layout>
+      <div className="flex justify-center">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-screen-lg justify-center justify-items-center">
+          {renderList()}
+        </div>
       </div>
-    </div>
+    </Layout>
   );
 };
+
+export async function getStaticProps() {
+  const productsData = getProductsList();
+  return {
+    props: { productsData },
+  };
+}
+
 export default Shop;

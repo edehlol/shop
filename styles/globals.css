@@ -6,4 +6,7 @@
   .btn {
     @apply py-1 px-3 border rounded;
   }
+  .container {
+    @apply px-4 lg:px-24;
+  }
 }

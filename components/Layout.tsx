@@ -1,5 +1,14 @@
+import Navbar from './Navbar';
+
 const Layout = ({ children }: { children?: React.ReactNode }) => {
-  return <div className="px-4">{children}</div>;
+  return (
+    <>
+      <Navbar />
+      <div className="container max-w-screen-xl flex justify-center">
+        <div>{children}</div>
+      </div>
+    </>
+  );
 };
 
 export default Layout;
