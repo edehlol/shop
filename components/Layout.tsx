@@ -5,7 +5,7 @@ const Layout = ({ children }: { children?: React.ReactNode }) => {
     <>
       <Navbar />
       <div className="container max-w-screen-xl flex justify-center">
-        <div>{children}</div>
+        <div className="w-full">{children}</div>
       </div>
     </>
   );
