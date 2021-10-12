@@ -2,6 +2,7 @@ export interface Product {
   id: string;
   name: string;
   thumbnail: StaticImageData;
-  description: string;
+  description?: string;
   price: number;
+  cartQuantity: number;
 }
