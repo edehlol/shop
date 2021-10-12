@@ -6,13 +6,18 @@ import React, { useState } from 'react';
 import { getAllProductIds, getProductData } from '../../lib/products';
 import { Product } from '../../interfaces/Product';
 import { AiFillCheckCircle } from 'react-icons/ai';
+import { productAdded } from '../../store/cartSlice';
+import { useAppDispatch } from '../../store/hooks';
 
 const ProductPage = ({ productData }: { productData: Product }) => {
-  const { name, id, price, description } = productData;
+  const { name, id, price, description, thumbnail } = productData;
   const [showDialog, setShowDialog] = useState(false);
+  const [quantity, setQuantity] = useState(1);
+  const dispatch = useAppDispatch();
 
   function handleAddToCart(id: string) {
     setShowDialog(true);
+    dispatch(productAdded({ name, id, price, thumbnail, cartQuantity: quantity }));
   }
   return (
     <>
@@ -51,7 +56,7 @@ const ProductPage = ({ productData }: { productData: Product }) => {
 
           <div className="lg:col-span-7 px-8 flex justify-center">
             <div className="relative w-96 h-96">
-              <Image src={chair} layout="fill" className="object-cover" alt={'test'} />
+              <Image src={thumbnail} layout="fill" className="object-cover" alt={'test'} />
             </div>
           </div>
         </div>
