@@ -13,6 +13,7 @@ const Shop = ({ productsData }: { productsData: Product[] }) => {
         thumbnail={product.thumbnail}
         description={product.description}
         price={product.price}
+        cartQuantity={0}
       />
     ));
   };
